@@ -1,0 +1,24 @@
+<configurator>
+	<domain name="General" />
+	<cluster>
+		<name>PM1.0 Cluster</name>
+		<domain>EyeAir</domain>
+		<description>This cluster provides PMSA003 sensor measured PM1.0 data</description>
+		<code>0xFE13</code>
+		<define>PM1_0_MFG_SPECIFIC_CLUSTER</define>
+		<client init="false" tick="false">true</client>
+		<server init="false" tick="false">true</server>
+		<attribute side="server" code="0x0000" define="ATTRIBUTE_ONE"
+			type="INT16U" min="0x0000" max="0xFFFF" writable="true"
+			default="0x0001" optional="true">MeasuredValue</attribute>
+		<attribute side="server" code="0x0001" define="ATTRIBUTE_TWO"
+			type="INT16U" min="0x0000" max="0xFFFF" writable="true"
+			default="0x0000" optional="true">MinMeasuredValue</attribute>
+		<attribute side="server" code="0x0002" define="ATTRIBUTE_THREE"
+			type="INT16U" min="0x0000" max="0xFFFF" writable="true"
+			default="0x00FF" optional="true">MaxMeasuredValue</attribute>
+		<attribute side="server" code="0x0003" define="ATTRIBUTE_FOUR"
+			type="INT16U" min="0x0000" max="0xFFFF" writable="true"
+			default="0x0001" optional="true">Tolerance</attribute>
+	</cluster>
+</configurator>
