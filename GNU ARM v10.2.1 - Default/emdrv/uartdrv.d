@@ -81,7 +81,7 @@ emdrv/uartdrv.o: \
  c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\emdrv\dmadrv\inc\dmadrv.h \
  c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\emlib\inc\em_ldma.h \
  c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\base\hal\micro\cortexm3\efm32\config\dmadrv_config.h \
- c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\emdrv\gpiointerrupt\inc\gpiointerrupt.h
+ C\:\Users\babahin\SimplicityStudio\v5_workspace\eyeair_sensors\emdrv_inc/gpiointerrupt.h
 c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\emdrv\uartdrv\inc\uartdrv.h:
 c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\service\power_manager\inc\sl_power_manager.h:
 c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\base\hal\micro\cortexm3\efm32\config\sl_power_manager_config.h:
@@ -163,4 +163,4 @@ c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platfo
 c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\emdrv\dmadrv\inc\dmadrv.h:
 c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\emlib\inc\em_ldma.h:
 c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\base\hal\micro\cortexm3\efm32\config\dmadrv_config.h:
-c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\emdrv\gpiointerrupt\inc\gpiointerrupt.h:
+C\:\Users\babahin\SimplicityStudio\v5_workspace\eyeair_sensors\emdrv_inc/gpiointerrupt.h:

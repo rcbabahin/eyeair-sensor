@@ -201,7 +201,7 @@ coexistence-stub/EFR32/coexistence-802154.o: \
  c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\radio\rail_lib\plugin\coexistence\hal\efr32\coexistence-hal.h \
  c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\emlib\inc\em_prs.h \
  c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\radio\rail_lib\plugin\coexistence\common\coexistence.h \
- c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\emdrv\gpiointerrupt\inc\gpiointerrupt.h \
+ C\:\Users\babahin\SimplicityStudio\v5_workspace\eyeair_sensors\emdrv_inc/gpiointerrupt.h \
  c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\radio\rail_lib\plugin\coexistence\protocol\ieee802154\coexistence-802154.h \
  c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\radio\rail_lib\plugin\coexistence\common\coexistence.h \
  c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\radio\rail_lib\plugin\coexistence\protocol\ieee802154\coulomb-counter-802154.h
@@ -406,7 +406,7 @@ c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platfo
 c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\radio\rail_lib\plugin\coexistence\hal\efr32\coexistence-hal.h:
 c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\emlib\inc\em_prs.h:
 c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\radio\rail_lib\plugin\coexistence\common\coexistence.h:
-c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\emdrv\gpiointerrupt\inc\gpiointerrupt.h:
+C\:\Users\babahin\SimplicityStudio\v5_workspace\eyeair_sensors\emdrv_inc/gpiointerrupt.h:
 c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\radio\rail_lib\plugin\coexistence\protocol\ieee802154\coexistence-802154.h:
 c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\radio\rail_lib\plugin\coexistence\common\coexistence.h:
 c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\radio\rail_lib\plugin\coexistence\protocol\ieee802154\coulomb-counter-802154.h:

@@ -1,5 +1,4 @@
-emdrv/gpiointerrupt.o: \
- C\:/Program\ Files/SimplicityStudio-5/developer/sdks/gecko_sdk_suite/v3.2/platform/emdrv/gpiointerrupt/src/gpiointerrupt.c \
+emdrv/gpiointerrupt.o: ../emdrv/gpiointerrupt.c \
  c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\emlib\inc\em_gpio.h \
  c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\device\siliconlabs\efr32mg14p\include\em_device.h \
  c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\device\siliconlabs\efr32mg14p\include\efr32mg14p732f256im48.h \
@@ -61,7 +60,7 @@ emdrv/gpiointerrupt.o: \
  c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\emlib\inc\em_common.h \
  c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\base\hal\micro\cortexm3\efm32\config\emlib_config.h \
  c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\emlib\inc\em_core.h \
- c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\emdrv\gpiointerrupt\inc\gpiointerrupt.h \
+ C\:\Users\babahin\SimplicityStudio\v5_workspace\eyeair_sensors\emdrv_inc/gpiointerrupt.h \
  c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\emlib\inc\em_assert.h \
  c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\emlib\inc\em_common.h
 c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\emlib\inc\em_gpio.h:
@@ -125,6 +124,6 @@ c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platfo
 c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\emlib\inc\em_common.h:
 c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\base\hal\micro\cortexm3\efm32\config\emlib_config.h:
 c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\emlib\inc\em_core.h:
-c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\emdrv\gpiointerrupt\inc\gpiointerrupt.h:
+C\:\Users\babahin\SimplicityStudio\v5_workspace\eyeair_sensors\emdrv_inc/gpiointerrupt.h:
 c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\emlib\inc\em_assert.h:
 c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\emlib\inc\em_common.h:

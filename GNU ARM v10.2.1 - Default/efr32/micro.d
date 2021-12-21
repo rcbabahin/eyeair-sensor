@@ -76,7 +76,7 @@ efr32/micro.o: \
  c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\service\sleeptimer\inc\sl_sleeptimer.h \
  c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\service\sleeptimer\config\sl_sleeptimer_config.h \
  c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\common\inc\sl_status.h \
- c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\emdrv\gpiointerrupt\inc\gpiointerrupt.h \
+ C\:\Users\babahin\SimplicityStudio\v5_workspace\eyeair_sensors\emdrv_inc/gpiointerrupt.h \
  c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\service\mpu\inc\sl_mpu.h \
  c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\protocol\zigbee\stack\include\ember.h \
  c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\protocol\zigbee\stack\include\ember-types.h \
@@ -310,7 +310,7 @@ C\:/Program\ Files/SimplicityStudio-5/developer/sdks/gecko_sdk_suite/v3.2/platfo
 c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\service\sleeptimer\inc\sl_sleeptimer.h:
 c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\service\sleeptimer\config\sl_sleeptimer_config.h:
 c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\common\inc\sl_status.h:
-c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\emdrv\gpiointerrupt\inc\gpiointerrupt.h:
+C\:\Users\babahin\SimplicityStudio\v5_workspace\eyeair_sensors\emdrv_inc/gpiointerrupt.h:
 c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\service\mpu\inc\sl_mpu.h:
 c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\protocol\zigbee\stack\include\ember.h:
 c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\protocol\zigbee\stack\include\ember-types.h:

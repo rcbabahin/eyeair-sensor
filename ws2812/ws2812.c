@@ -8,6 +8,9 @@
 #include "em_ldma.h"
 #include "ws2812.h"
 #include "sl_sleeptimer.h"
+#include "em_adc.h"
+#include "battery.h"
+#include "em_wdog.h"
 
 // Note: change this to set the desired Output frequency in Hz
 #define PWM_FREQ 800000
@@ -176,22 +179,46 @@ void change_color_WS2812(void)
 
 	 LDMA_DeInit();*/
 }
-
+	  uint8_t  state = 0;
 void init_WS2812(void)
 {
+  BatteryStateType bat_led;
+
 	// Initializations
 	  init_GPIO_WS2812();
 
 	  ws2812_init_buf();
+
+	  bat_led = check_battery_state();
+
+	  if(bat_led==BATTERY_CHARGING)
+	    {
+	      SET_TURQUOISE_LIGHT(LED_ENABLE);
+	    }
+	  /*else if(bat_led==BATTERY_0_10)
+	    {
+	      SET_RED_LIGHT(LED_ENABLE);
+	    }
+    else if(bat_led==BATTERY_10_40)
+      {
+        SET_ORANGE_LIGHT(LED_ENABLE);
+      }*/
+    else
+      {
+        SET_WHITE_LIGHT(LED_ENABLE);
+      }
+
+	  WDOGn_Feed(DEFAULT_WDOG);
 
 	  // Initialize DMA only after buffer is populated
 	  //populateBuffer();
 	  SET_WHITE_LIGHT(LED_PM);
 	  SET_WHITE_LIGHT(LED_CO2);
 	  SET_WHITE_LIGHT(LED_TVOC);
-	  SET_TURQUOISE_LIGHT(LED_ENABLE);
 
 	  change_color_WS2812();
+
+	  WDOGn_Feed(DEFAULT_WDOG);
 }
 
 

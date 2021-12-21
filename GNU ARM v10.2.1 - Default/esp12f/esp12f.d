@@ -217,7 +217,8 @@ esp12f/esp12f.o: ../esp12f/esp12f.c \
  c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\protocol\zigbee\app\framework\util\client-api.h \
  c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\protocol\zigbee\app\util\serial\command-interpreter2.h \
  c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\protocol\zigbee\app\framework\cli\zcl-cli.h \
- ../esp12f/esp12f.h
+ ../esp12f/esp12f.h \
+ c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\emlib\inc\em_wdog.h
 c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\protocol\zigbee\app\framework\include\af.h:
 C\:/Program\ Files/SimplicityStudio-5/developer/sdks/gecko_sdk_suite/v3.2/platform/base/hal/micro/cortexm3/compiler/gcc.h:
 c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\device\siliconlabs\efr32mg14p\include\em_device.h:
@@ -437,3 +438,4 @@ c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\protoc
 c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\protocol\zigbee\app\util\serial\command-interpreter2.h:
 c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\protocol\zigbee\app\framework\cli\zcl-cli.h:
 ../esp12f/esp12f.h:
+c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\emlib\inc\em_wdog.h:

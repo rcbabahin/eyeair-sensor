@@ -19,6 +19,7 @@
   extern EmberEventControl SHTEventControl; \
   extern EmberEventControl CCSEventControl; \
   extern EmberEventControl startBuzzerSoundDangerousEventControl; \
+  extern EmberEventControl checkBatteryEventControl; \
   extern void emberAfPluginFormAndJoinCleanupEventHandler(void); \
   extern void emberAfPluginNetworkSteeringFinishSteeringEventHandler(void); \
   extern void emberAfPluginUpdateTcLinkKeyBeginTcLinkKeyUpdateEventHandler(void); \
@@ -46,6 +47,7 @@
   extern void SHTEventHandler; \
   extern void CCSEventHandler; \
   extern void startBuzzerSoundDangerousEventHandler; \
+  extern void checkBatteryEventHandler; \
 
 
 // EmberEventData structs used to populate the EmberEventData table
@@ -61,6 +63,7 @@
 	{ &SHTEventControl, &SHTEventHandler }, \
 	{ &CCSEventControl, &CCSEventHandler }, \
 	{ &startBuzzerSoundDangerousEventControl, &startBuzzerSoundDangerousEventHandler }, \
+	{ &checkBatteryEventControl, &checkBatteryEventHandler }, \
 
 
 #define EMBER_AF_GENERATED_EVENT_STRINGS   \

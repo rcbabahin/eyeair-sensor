@@ -66,7 +66,8 @@ buzzer/buzzer.o: ../buzzer/buzzer.c \
  ../buzzer/buzzer.h \
  c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\service\sleeptimer\inc\sl_sleeptimer.h \
  c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\service\sleeptimer\config\sl_sleeptimer_config.h \
- c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\common\inc\sl_status.h
+ c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\common\inc\sl_status.h \
+ c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\emlib\inc\em_wdog.h
 c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\emlib\inc\em_cmu.h:
 c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\device\siliconlabs\efr32mg14p\include\em_device.h:
 c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\device\siliconlabs\efr32mg14p\include\efr32mg14p732f256im48.h:
@@ -135,3 +136,4 @@ c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platfo
 c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\service\sleeptimer\inc\sl_sleeptimer.h:
 c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\service\sleeptimer\config\sl_sleeptimer_config.h:
 c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\common\inc\sl_status.h:
+c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\emlib\inc\em_wdog.h:

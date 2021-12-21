@@ -51,6 +51,7 @@ serial \
 sht20 \
 sim-eeprom1/EFR32 \
 simple-main \
+stack/stack-diagnostics \
 strong-random \
 update-tc-link-key \
 ws2812 \

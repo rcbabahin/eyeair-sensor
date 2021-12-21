@@ -228,7 +228,8 @@ eyeair_blank_callbacks.o: ../eyeair_blank_callbacks.c \
  ../eyeair.h \
  C\:\Users\babahin\SimplicityStudio\v5_workspace\eyeair_sensors\battery/battery.h \
  C\:\Users\babahin\SimplicityStudio\v5_workspace\eyeair_sensors\buzzer/buzzer.h \
- C\:\Users\babahin\SimplicityStudio\v5_workspace\eyeair_sensors\esp12f/esp12f.h
+ C\:\Users\babahin\SimplicityStudio\v5_workspace\eyeair_sensors\esp12f/esp12f.h \
+ c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\base\hal\micro\cortexm3\diagnostic.h
 c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\protocol\zigbee\app\framework\include\af.h:
 C\:/Program\ Files/SimplicityStudio-5/developer/sdks/gecko_sdk_suite/v3.2/platform/base/hal/micro/cortexm3/compiler/gcc.h:
 c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\device\siliconlabs\efr32mg14p\include\em_device.h:
@@ -459,3 +460,4 @@ C\:\Users\babahin\SimplicityStudio\v5_workspace\eyeair_sensors\ws2812/ws2812.h:
 C\:\Users\babahin\SimplicityStudio\v5_workspace\eyeair_sensors\battery/battery.h:
 C\:\Users\babahin\SimplicityStudio\v5_workspace\eyeair_sensors\buzzer/buzzer.h:
 C\:\Users\babahin\SimplicityStudio\v5_workspace\eyeair_sensors\esp12f/esp12f.h:
+c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\base\hal\micro\cortexm3\diagnostic.h:

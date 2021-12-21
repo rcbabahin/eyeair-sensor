@@ -443,6 +443,7 @@ CINC = -I./ \
   -I../../../../../Program Files/SimplicityStudio-5/developer/sdks/gecko_sdk_suite/v3.2/util/third_party/crypto/sl_component/sl_psa_driver/inc \
   -I../../../../../Program Files/SimplicityStudio-5/developer/sdks/gecko_sdk_suite/v3.2/util/third_party/segger/systemview/SEGGER \
   -Ihal-config \
+  -Ibattery \
   -Ibuzzer \
   -Iccs811 \
   -Iesp12f \

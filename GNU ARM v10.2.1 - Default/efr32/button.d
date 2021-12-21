@@ -198,7 +198,7 @@ efr32/button.o: \
  c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\base\hal\micro/diagnostic.h \
  c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\base\hal\micro/symbol-timer.h \
  c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\base\hal\plugin\serial\serial.h \
- c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\emdrv\gpiointerrupt\inc\gpiointerrupt.h
+ C\:\Users\babahin\SimplicityStudio\v5_workspace\eyeair_sensors\emdrv_inc/gpiointerrupt.h
 C\:/Program\ Files/SimplicityStudio-5/developer/sdks/gecko_sdk_suite/v3.2/platform/base/hal/micro/cortexm3/compiler/gcc.h:
 c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\device\siliconlabs\efr32mg14p\include\em_device.h:
 c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\device\siliconlabs\efr32mg14p\include\efr32mg14p732f256im48.h:
@@ -397,4 +397,4 @@ c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platfo
 c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\base\hal\micro/diagnostic.h:
 c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\base\hal\micro/symbol-timer.h:
 c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\base\hal\plugin\serial\serial.h:
-c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\emdrv\gpiointerrupt\inc\gpiointerrupt.h:
+C\:\Users\babahin\SimplicityStudio\v5_workspace\eyeair_sensors\emdrv_inc/gpiointerrupt.h:

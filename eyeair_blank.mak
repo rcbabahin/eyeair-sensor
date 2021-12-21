@@ -238,6 +238,7 @@ SOURCE_FILES = \
 ../../../../../Program Files/SimplicityStudio-5/developer/sdks/gecko_sdk_suite/v3.2/platform\base\hal\plugin\serial\serial.c \
 ../../../../../Program Files/SimplicityStudio-5/developer/sdks/gecko_sdk_suite/v3.2/platform\base\hal\plugin\sim-eeprom1\sim-eeprom.c \
 ../../../../../Program Files/SimplicityStudio-5/developer/sdks/gecko_sdk_suite/v3.2/protocol\zigbee\app\framework\plugin\simple-main\simple-main.c \
+../../../../../Program Files/SimplicityStudio-5/developer/sdks/gecko_sdk_suite/v3.2/protocol\zigbee\app\framework\plugin\stack-diagnostics\stack-diagnostics.c \
 ../../../../../Program Files/SimplicityStudio-5/developer/sdks/gecko_sdk_suite/v3.2/protocol\zigbee\stack\framework\strong-random-api.c \
 ../../../../../Program Files/SimplicityStudio-5/developer/sdks/gecko_sdk_suite/v3.2/protocol\zigbee\app\framework\plugin\update-tc-link-key\update-tc-link-key.c \
 ../../../../../Program Files/SimplicityStudio-5/developer/sdks/gecko_sdk_suite/v3.2/protocol\zigbee\app\framework\plugin\update-tc-link-key\update-tc-link-key-cli.c \

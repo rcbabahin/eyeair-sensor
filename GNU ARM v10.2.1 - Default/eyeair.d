@@ -227,7 +227,8 @@ eyeair.o: ../eyeair.c \
  c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\emlib\inc\em_i2c.h \
  ../eyeair.h \
  C\:\Users\babahin\SimplicityStudio\v5_workspace\eyeair_sensors\battery/battery.h \
- C\:\Users\babahin\SimplicityStudio\v5_workspace\eyeair_sensors\buzzer/buzzer.h
+ C\:\Users\babahin\SimplicityStudio\v5_workspace\eyeair_sensors\buzzer/buzzer.h \
+ c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\emlib\inc\em_wdog.h
 c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\protocol\zigbee\app\framework\include\af.h:
 C\:/Program\ Files/SimplicityStudio-5/developer/sdks/gecko_sdk_suite/v3.2/platform/base/hal/micro/cortexm3/compiler/gcc.h:
 c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\device\siliconlabs\efr32mg14p\include\em_device.h:
@@ -457,3 +458,4 @@ c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platfo
 ../eyeair.h:
 C\:\Users\babahin\SimplicityStudio\v5_workspace\eyeair_sensors\battery/battery.h:
 C\:\Users\babahin\SimplicityStudio\v5_workspace\eyeair_sensors\buzzer/buzzer.h:
+c\:\program\ files\simplicitystudio-5\developer\sdks\gecko_sdk_suite\v3.2\platform\emlib\inc\em_wdog.h:

@@ -8,6 +8,7 @@
 #include "em_ldma.h"
 #include "buzzer.h"
 #include "sl_sleeptimer.h"
+#include "em_wdog.h"
 
 uint16_t HappyBirthday[] = {
 	262, 262, 294, 262, 349, 330, 262,
@@ -147,7 +148,7 @@ void buzzer_sound(uint16_t *buffer_sound, uint8_t buffer_size)
 
 	for(uint8_t i = 0; i < buffer_size; i++)
 	{
-
+		WDOGn_Feed(DEFAULT_WDOG);
 		buzzer_set_freq(buffer_sound[i]);
 		init_timer();
 		sl_sleeptimer_delay_millisecond(100);

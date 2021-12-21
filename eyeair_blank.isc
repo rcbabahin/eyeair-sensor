@@ -602,7 +602,8 @@ appPlugin:slot-manager,false
 appPlugin:smart-energy-registration,false
 appPlugin:source-route-library,true
 
-appPlugin:stack-diagnostics,false
+appPlugin:stack-diagnostics,true
+
 appPlugin:stack-protection-iar,false
 appPlugin:standalone-bootloader-client,false
 appPlugin:standalone-bootloader-common,false

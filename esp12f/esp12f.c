@@ -4,11 +4,72 @@
 #include "uartdrv.h"
 #include "esp12f.h"
 #include "sl_sleeptimer.h"
+#include "em_wdog.h"
 
-#define BUF_SIZE	200
+#define BUF_SIZE		150
+#define TIMEOUT_MAX	600
 
-volatile uint8_t rxbuf[BUF_SIZE];
-volatile uint16_t pos = 0;
+typedef struct
+{
+  char buffer[BUF_SIZE];
+  volatile uint16_t head;
+  volatile uint16_t tail;
+} ring_buffer;
+
+ring_buffer rb_rx;
+
+void BufferClear(char *b, uint8_t size)
+{
+	memset(b, '\0', size);
+}
+
+void RingBuffer_Init(ring_buffer *rb)
+{
+	memset(rb->buffer, '\0', BUF_SIZE);
+	rb->head = 0;
+	rb->tail = 0;
+}
+
+void RingBuffer_Flush(ring_buffer *rb)
+{
+	RingBuffer_Init(rb);
+}
+
+uint16_t RingBuffer_IsDataAvaliable(ring_buffer *rb)
+{
+	return (uint16_t)(BUF_SIZE + rb->head - rb->tail) % BUF_SIZE;
+}
+
+int RingBuffer_Peek(ring_buffer *rb)
+{
+	if (rb->head == rb->tail)
+		return -1;
+	else
+		return rb->buffer[rb->tail];
+}
+
+void RingBuffer_AddChar(char c, ring_buffer *rb)
+{
+	uint16_t i = (rb->head + 1) % BUF_SIZE;
+	/* it will just stop to add characters if head + 1 == tail */
+	if (i != rb->tail)
+	{
+			rb->buffer[rb->head] = c;
+			rb->head = i;
+	}
+}
+
+int RingBuffer_ReadChar(ring_buffer *rb)
+{
+	if (rb->head == rb->tail)
+			return -1;
+	else
+	{
+			char c = rb->buffer[rb->tail];
+			rb->tail = (rb->tail + 1) % BUF_SIZE;
+			return c;
+	}
+}
 
 void USART_SendString(USART_TypeDef *usart, const char *s)
 {
@@ -17,47 +78,136 @@ void USART_SendString(USART_TypeDef *usart, const char *s)
 
 void USART1_RX_IRQHandler(void)
 {
-	rxbuf[pos] = USART_RxDataGet(USART1);
-	pos++;
+	RingBuffer_AddChar((char)USART_RxDataGet(USART1), &rb_rx);
 }
 
-void WaitFor(const char *s)
+static void timeout_callback(sl_sleeptimer_timer_handle_t *handle, void *data)
 {
-	uint16_t len = strlen(s);
+	volatile bool *wait_flag = (bool *)data;
 
-	for (uint8_t i = 0; i < BUF_SIZE; i++)
-		rxbuf[i] = 0;
+	(void)handle;
 
-	while (len != pos) {}
-	pos = 0;
-
-	/* TODO: compare strings and do error handling */
+	*wait_flag = false;
 }
 
-void WIFI_Init(void)
+int WaitForAnswer(char *answer, const char *s)
 {
+	int retval = -1;
+	uint16_t i = 0, j = 0;
+	uint8_t len = strlen(s);
+	volatile bool wait = true;
+	sl_sleeptimer_timer_handle_t timeout_timer;
+
+	sl_sleeptimer_start_timer_ms(&timeout_timer, TIMEOUT_MAX, timeout_callback, (void *)&wait, 0, 0);
+
+	while (wait)
+	{
+			if (RingBuffer_IsDataAvaliable(&rb_rx))
+			{
+
+					answer[i] = RingBuffer_ReadChar(&rb_rx);
+
+					if (answer[i++] == s[j])
+							j++;
+					else
+							j = 0;
+
+					if (j == (len))
+					{
+							retval = 1;
+							wait = false;
+					}
+			}
+			else
+			{
+					WDOGn_Feed(DEFAULT_WDOG);
+			}
+	}
+
+	sl_sleeptimer_stop_timer(&timeout_timer);
+	RingBuffer_Flush(&rb_rx);
+
+	return retval;
+}
+
+uint8_t WIFI_Init(void)
+{
+	uint8_t state = 1;
+	char answer[200];
+	RingBuffer_Init(&rb_rx);
+
+//  USART_SendString(USART1, "AT+RST\r\n");
+//  if (WaitForAnswer(answer, "OK\r\n") < 0)
+//  {
+////      Error_Handler(ans);
+//  }
+//
+//  BufferClear(answer, 200);
+
 	USART_SendString(USART1, "AT\r\n");
-	WaitFor("AT\r\r\n\r\nOK\r\n");
+	if (WaitForAnswer(answer, "OK\r\n") < 0)
+	{
+//			Error_Handler(ans);
+	}
+
+  BufferClear(answer, 200);
+
+//  USART_SendString(USART1, "AT+CWJAP?\r\n");
+//  if (WaitForAnswer(answer, "OK\r\n") < 0)
+//  {
+////      Error_Handler(ans);
+//  }
+//
+//  BufferClear(answer, 200);
+//
+//  USART_SendString(USART1, "AT+CWJAP=\"eyeair\",\"03062022\"\r\n");
+//  if (WaitForAnswer(answer, "OK\r\n") < 0)
+//  {
+////      Error_Handler(ans);
+//  }
+//
+//	BufferClear(answer, 200);
 
 	USART_SendString(USART1, "AT+CIFSR\r\n");
-	WaitFor("AT+CIFSR\r\r\n+CIFSR:APIP,\"xxx.xxx.x.x\"\r\n+CIFSR:APMAC,\"xx:xx:xx:xx:xx:xx\"\r\n+CIFSR:STAIP,\"xxx.xxx.x.x\"\r\n+CIFSR:STAMAC,\"xx:xx:xx:xx:xx:xx\"\r\n\r\nOK\r\n");
+	if (WaitForAnswer(answer, "OK\r\n") < 0)
+	{
+//			Error_Handler(ans);
+	}
 
-	USART_SendString(USART1, "AT+CIPSTART=\"TCP\",\"192.168.1.2\",7070\r\n");
-	WaitFor("AT+CIPSTART=\"TCP\",\"192.168.1.2\",7070\r\r\nCONNECT\r\n\r\nOK\r\n");
+	BufferClear(answer, 200);
+
+	USART_SendString(USART1, "AT+CIPSTART=\"TCP\",\"192.168.173.1\",7070\r\n");
+	if (WaitForAnswer(answer, "OK\r\n") < 0)
+	{
+			if (strstr(answer, "CONNECTED") == NULL)
+				state = 0;
+	}
+
+	return state;
 }
 
-void WIFI_TCPSendData(char *str_data, uint8_t len)
+uint8_t WIFI_TCPSendData(char *str_data, uint8_t len)
 {
+	uint8_t state = 1;
 	char send_str[16];
-	char send_str_answer[25];
-	char recv_answer[29];
+	char answer[150];
 	snprintf(send_str, sizeof(send_str), "AT+CIPSEND=%d\r\n", len);
-	snprintf(send_str_answer, sizeof(send_str_answer), "AT+CIPSEND=%d\r\r\n\r\nOK\r\n> ", len);
-	snprintf(recv_answer, sizeof(recv_answer), "\r\nRecv %d bytes\r\n\r\nSEND OK\r\n", len);
 
 	USART_SendString(USART1, send_str);
-	WaitFor(send_str_answer);
-	USART_SendString(USART1, str_data);
-	WaitFor(recv_answer);
-}
+	if (WaitForAnswer(answer, "OK\r\n> ") < 0)
+	{
+//			Error_Handler(ans);
+			state = 0;
+	}
 
+	BufferClear(answer, 150);
+
+	USART_SendString(USART1, str_data);
+	if (WaitForAnswer(answer, "OK\r\n") < 0)
+	{
+//			Error_Handler(ans);
+			state = 0;
+	}
+
+	return state;
+}

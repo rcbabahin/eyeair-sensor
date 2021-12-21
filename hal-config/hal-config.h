@@ -211,30 +211,6 @@
 // [UARTNCP]$
 
 // $[USART0]
-#define PORTIO_USART0_RX_PIN                  (1U)
-#define PORTIO_USART0_RX_PORT                 (gpioPortA)
-#define PORTIO_USART0_RX_LOC                  (0U)
-
-#define PORTIO_USART0_TX_PIN                  (0U)
-#define PORTIO_USART0_TX_PORT                 (gpioPortA)
-#define PORTIO_USART0_TX_LOC                  (0U)
-
-#define HAL_USART0_ENABLE                     (1)
-
-#define BSP_USART0_TX_PIN                     (0U)
-#define BSP_USART0_TX_PORT                    (gpioPortA)
-#define BSP_USART0_TX_LOC                     (0U)
-
-#define BSP_USART0_RX_PIN                     (1U)
-#define BSP_USART0_RX_PORT                    (gpioPortA)
-#define BSP_USART0_RX_LOC                     (0U)
-
-#define HAL_USART0_BAUD_RATE                  (9600UL)
-#define HAL_USART0_FLOW_CONTROL               (HAL_USART_FLOW_CONTROL_NONE)
-#define HAL_USART0_RXSTOP                     (16UL)
-#define HAL_USART0_RXSTART                    (16UL)
-#define HAL_USART0_TX_QUEUE_SIZE              (128UL)
-#define HAL_USART0_RX_QUEUE_SIZE              (128UL)
 // [USART0]$
 
 // $[USART1]

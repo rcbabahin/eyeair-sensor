@@ -19,10 +19,20 @@
 typedef enum
 {
 	NOT_SWITCH = 0,
+	WHITE,
+	TURQUOISE,
 	GREEN,
 	ORANGE,
 	RED
 } LedColorType;
+
+typedef struct
+{
+	uint8_t PM;
+	uint8_t CO2;
+	uint8_t TVOC;
+	uint8_t battery;
+} stateLedType;
 
 typedef struct
 {
@@ -37,9 +47,11 @@ typedef struct
 	SHTSensorType *sht;
 	CCSSensorType *ccs;
 	BatteryStateType battery_state;
+	uint8_t wifi_connected;
 } DeviceType;
 
 extern DeviceType EyeAirDevice;
+extern stateLedType stateLED;
 
 void border_control_CO2_TVOC(void);
 void border_control_PM(void);

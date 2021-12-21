@@ -47,8 +47,6 @@
     <property object="PORTIO" propertyId="portio.i2c0.enable.sda" value="Enabled"/>
     <property object="PORTIO" propertyId="portio.i2c0.location.i2c0_sclloc" value="2"/>
     <property object="PORTIO" propertyId="portio.i2c0.location.i2c0_sdaloc" value="2"/>
-    <property object="PORTIO" propertyId="portio.usart0.enable.rx" value="Enabled"/>
-    <property object="PORTIO" propertyId="portio.usart0.enable.tx" value="Enabled"/>
     <property object="PORTIO" propertyId="portio.usart1.enable.rx" value="Enabled"/>
     <property object="PORTIO" propertyId="portio.usart1.enable.tx" value="Enabled"/>
     <property object="PORTIO" propertyId="portio.usart1.location.usart1_rxloc" value="11"/>
@@ -58,7 +56,6 @@
     <property object="SERIAL" propertyId="SERIAL.showadvanced.BOOL" value="1"/>
     <property object="SPIDISPLAY" propertyId="SPIDISPLAY.HAL_SPIDISPLAY_EXTCOMIN_CALLBACK.STRING" value="rtcIntCallbackRegister"/>
     <property object="SPIDISPLAY" propertyId="SPIDISPLAY.HAL_SPIDISPLAY_EXTCOMIN_USE_CALLBACK.BOOL" value="1"/>
-    <property object="USART0" propertyId="ABPeripheral.included" value="true"/>
     <property object="USART0" propertyId="USART.BSP_USART_MISO.PIN" value="PA1"/>
     <property object="USART0" propertyId="USART.BSP_USART_MOSI.PIN" value="PA0"/>
     <property object="USART0" propertyId="USART.BSP_USART_RX.PIN" value="PA1"/>

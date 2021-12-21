@@ -15,13 +15,16 @@
 #include "eyeair.h"
 #include "buzzer.h"
 #include "esp12f.h"
+#include "battery.h"
+#include "hal/micro/cortexm3/diagnostic.h"
 
 #define TEST_DEVICE
 
 #define BUFFER_SIZE	32
 uint8_t buffer[BUFFER_SIZE];
+char answer[150];
 
-EmberEventControl startScanAndConnectEventControl, PMSAEventControl,	SHTEventControl,
+EmberEventControl checkBatteryEventControl, startScanAndConnectEventControl, PMSAEventControl,	SHTEventControl,
 CCSEventControl, startBuzzerAndRGBEventControl, startBuzzerSoundDangerousEventControl;
 
 void Init_I2C(I2C_TypeDef *i2c)
@@ -50,6 +53,7 @@ void Init_USART(USART_TypeDef *usart)
 {
   USART_InitAsync_TypeDef init = USART_INITASYNC_DEFAULT;
   init.baudrate = 9600;
+//  init.baudrate = 115200;
 
   // Enable oscillator to GPIO and USART0 modules
   CMU_ClockEnable(cmuClock_HFPER, true);
@@ -59,11 +63,15 @@ void Init_USART(USART_TypeDef *usart)
   // set pin modes for UART0 TX and RX pins
   GPIO_PinModeSet(gpioPortA, 1, gpioModeInput, 0);
   GPIO_PinModeSet(gpioPortA, 0, gpioModePushPull, 1);
+//  GPIO_PinModeSet(gpioPortF, 5, gpioModeInput, 0);
+//  GPIO_PinModeSet(gpioPortF, 4, gpioModePushPull, 1);
 
   // Initialize USART asynchronous mode and route pins
   USART_InitAsync(usart, &init);
+
   usart->ROUTEPEN |= USART_ROUTEPEN_RXPEN | USART_ROUTEPEN_TXPEN;
   usart->ROUTELOC0 = USART_ROUTELOC0_RXLOC_LOC0 | USART_ROUTELOC0_TXLOC_LOC0;
+//  usart->ROUTELOC0 = USART_ROUTELOC0_RXLOC_LOC28 | USART_ROUTELOC0_TXLOC_LOC28;
 
   USART_InitAsync_TypeDef init1 = USART_INITASYNC_DEFAULT;
   init.baudrate = 115200;
@@ -101,20 +109,25 @@ static void FindAmountOfDigits(uint16_t p, uint8_t *n)
 void startBuzzerAndRGBEventHandler(void)
 {
 	emberEventControlSetInactive(startBuzzerAndRGBEventControl);
-
+//	if (halResetWasCrash()) {
+//		halPrintCrashSummary(comPortUsart0);
+//		halPrintCrashDetails(comPortUsart0);
+//		halPrintCrashData(comPortUsart0);
+//	}
 	init_buzzer();
   PMSA_Init(EyeAirDevice.pmsa);
   SHT20_Init(EyeAirDevice.sht);
   CO2_sensor_init(EyeAirDevice.ccs);
 	USART_IntEnable(USART1, USART_IEN_RXDATAV);
-	WIFI_Init();
+	EyeAirDevice.wifi_connected = WIFI_Init();
 
+	emberEventControlSetActive(checkBatteryEventControl);
 #ifdef TEST_DEVICE
   emberEventControlSetActive(startScanAndConnectEventControl);
   emberEventControlSetActive(PMSAEventControl);
   emberEventControlSetActive(SHTEventControl);
   emberEventControlSetActive(CCSEventControl);
-#elif
+#else
   emberEventControlSetDelayMinutes(startScanAndConnectEventControl, 20);
   emberEventControlSetDelayMinutes(PMSAEventControl, 20);
   emberEventControlSetDelayMinutes(SHTEventControl, 20);
@@ -122,8 +135,30 @@ void startBuzzerAndRGBEventHandler(void)
 #endif
 }
 
+void checkBatteryEventHandler(void)
+{
+	/*if(GPIO_PinInGet(gpioPortA, 5) == 1)
+	  {
+			 SET_WHITE_LIGHT(LED_ENABLE);
+		}
+	else
+		{
+		   SET_TURQUOISE_LIGHT(LED_ENABLE);
+		}
+
+	change_color_WS2812();*/
+
+	emberEventControlSetInactive(checkBatteryEventControl);
+	//emberEventControlSetDelayMS(checkBatteryEventControl, 5000);
+}
+
 void PMSAEventHandler(void)
 {
+	if (!EyeAirDevice.wifi_connected)
+	{
+			EyeAirDevice.wifi_connected = WIFI_Init();
+	}
+
 	PMSA_RequestRead(EyeAirDevice.pmsa);
 	PMSAStateType state = PMSA_Read(EyeAirDevice.pmsa, buffer, BUFFER_SIZE);
 
@@ -148,24 +183,14 @@ void PMSAEventHandler(void)
 			FindAmountOfDigits(EyeAirDevice.pmsa->PM2_5_AE, &n2_5);
 			FindAmountOfDigits(EyeAirDevice.pmsa->PM10_0_AE, &n10);
 
-			uint8_t n = 23 + n1_0 + n2_5 + n10;
-			char data[n + 1];
-			snprintf(data, sizeof(data), "PM1.0:%d, PM2.5:%d, PM10.0:%d",
+			uint8_t n_pm = 26 + n1_0 + n2_5 + n10;
+			char data_pm[n_pm + 1];
+			snprintf(data_pm, sizeof(data_pm), "PM1.0:%d, PM2.5:%d, PM10.0:%d   ",
 			         (uint8_t)EyeAirDevice.pmsa->PM1_0_AE,
 			         (uint8_t)EyeAirDevice.pmsa->PM2_5_AE,
 			         (uint8_t)EyeAirDevice.pmsa->PM10_0_AE);
 
-			char send_str[16];
-			char send_str_answer[25];
-			char recv_answer[29];
-			snprintf(send_str, sizeof(send_str), "AT+CIPSEND=%d\r\n", n);
-			snprintf(send_str_answer, sizeof(send_str_answer), "AT+CIPSEND=%d\r\r\n\r\nOK\r\n> ", n);
-			snprintf(recv_answer, sizeof(recv_answer), "\r\nRecv %d bytes\r\n\r\nSEND OK\r\n", n);
-
-			USART_SendString(USART1, send_str);
-			WaitFor(send_str_answer);
-			USART_SendString(USART1, data);
-			WaitFor(recv_answer);
+			EyeAirDevice.wifi_connected = WIFI_TCPSendData(data_pm, n_pm);
 
 			border_control_PM();
 
@@ -192,13 +217,10 @@ void SHTEventHandler(void)
 
 	calibration_by_env_data();
 
-	char data[15];
-	snprintf(data, sizeof(data), "TEMP:%d, RH:%d", (uint8_t)EyeAirDevice.sht->temp, (uint8_t)EyeAirDevice.sht->rh);
+	char data_temp_rh[15];
+	snprintf(data_temp_rh, sizeof(data_temp_rh), "TEMP:%d, RH:%d", (uint8_t)(EyeAirDevice.sht->temp-2), (uint8_t)EyeAirDevice.sht->rh);
 
-	USART_SendString(USART1, "AT+CIPSEND=14\r\n");
-	WaitFor("AT+CIPSEND=14\r\r\n\r\nOK\r\n> ");
-	USART_SendString(USART1, data);
-	WaitFor("\r\nRecv 14 bytes\r\n\r\nSEND OK\r\n");
+	EyeAirDevice.wifi_connected = WIFI_TCPSendData(data_temp_rh, 14);
 
 	emberEventControlSetDelayMS(SHTEventControl, 2000);
 }
@@ -221,21 +243,11 @@ void CCSEventHandler(void)
 	FindAmountOfDigits(EyeAirDevice.ccs->co2, &n_co2);
 	FindAmountOfDigits(EyeAirDevice.ccs->tvoc, &n_tvoc);
 
-	uint8_t n = 11 + n_co2 + n_tvoc;
-	char data[n + 1];
-	snprintf(data, sizeof(data), "CO2:%d, TVOC:%d", EyeAirDevice.ccs->co2, EyeAirDevice.ccs->tvoc);
+	uint8_t n_ccs = 14 + n_co2 + n_tvoc;
+	char data_ccs[n_ccs + 1];
+	snprintf(data_ccs, sizeof(data_ccs), "TVOC:%d, CO2:%d   ", EyeAirDevice.ccs->tvoc, EyeAirDevice.ccs->co2);
 
-	char send_str[16];
-	char send_str_answer[25];
-	char recv_answer[29];
-	snprintf(send_str, sizeof(send_str), "AT+CIPSEND=%d\r\n", n);
-	snprintf(send_str_answer, sizeof(send_str_answer), "AT+CIPSEND=%d\r\r\n\r\nOK\r\n> ", n);
-	snprintf(recv_answer, sizeof(recv_answer), "\r\nRecv %d bytes\r\n\r\nSEND OK\r\n", n);
-
-	USART_SendString(USART1, send_str);
-	WaitFor(send_str_answer);
-	USART_SendString(USART1, data);
-	WaitFor(recv_answer);
+	EyeAirDevice.wifi_connected = WIFI_TCPSendData(data_ccs, n_ccs);
 
 	emberEventControlSetInactive(CCSEventControl);
 	emberEventControlSetDelayMS(CCSEventControl, 4000);
@@ -310,9 +322,13 @@ void emberAfMainInitCallback(void)
 {
   Init_I2C(I2C0);
 	Init_USART(USART0);
+	CMU_ClockSelectSet(cmuClock_LFE, cmuSelect_LFXO);
+	CMU_ClockEnable(cmuClock_RTCC, true);
 	sl_sleeptimer_init();
+	initADC();
+	initBatStatePin();
   init_WS2812();
-  emberEventControlSetDelayMS(startBuzzerAndRGBEventControl, 3000);
+  emberEventControlSetActive(startBuzzerAndRGBEventControl);
 }
 
 

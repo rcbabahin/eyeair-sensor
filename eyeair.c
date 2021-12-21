@@ -8,6 +8,7 @@
 #include "eyeair.h"
 #include "buzzer.h"
 #include "battery.h"
+#include "em_wdog.h"
 
 extern EmberEventControl startBuzzerSoundDangerousEventControl;
 
@@ -24,12 +25,15 @@ PMSASensorType pmsa003;
 SHTSensorType sht20;
 CCSSensorType ccs811;
 
+stateLedType stateLED;
+
 DeviceType EyeAirDevice =
 {
 		.ccs = &ccs811,
 		.pmsa = &pmsa003,
 		.sht = &sht20,
-		.battery_state = BATTERY_40_100
+		.battery_state = BATTERY_40_100,
+		.wifi_connected = 0
 };
 
 counter_parameter_board counter_CO2 = COUNTER_PARAM_DEFAULT;
@@ -90,6 +94,8 @@ static LedColorType check_parameter_boundary(
 	return status_led;
 }
 
+
+
 void stop_sound_dangerous(void)
 {
 	emberEventControlSetInactive(startBuzzerSoundDangerousEventControl);
@@ -122,6 +128,8 @@ void border_control_CO2_TVOC(void)
 		case RED:    SET_RED_LIGHT(LED_CO2); sound_dangerous(); break;
 	}
 
+	WDOGn_Feed(DEFAULT_WDOG);
+
 	// CHECK TVOC
 	switch(check_parameter_boundary(EyeAirDevice.ccs->tvoc, ACCEPTABLE_BORDER_TVOC, DANGEROUS_BORDER_TVOC, &counter_TVOC))
 	{
@@ -130,7 +138,20 @@ void border_control_CO2_TVOC(void)
 		case RED:    SET_RED_LIGHT(LED_TVOC); sound_dangerous(); break;
 	}
 
+	if(GPIO_PinInGet(gpioPortA, 5) == 1)
+		  {
+				if(GPIO_PinInGet(gpioPortA, 5) == 1)
+				 {SET_WHITE_LIGHT(LED_ENABLE);}
+			}
+		else
+			{
+				if(GPIO_PinInGet(gpioPortA, 5) == 0)
+			   {SET_TURQUOISE_LIGHT(LED_ENABLE);}
+			}
+
 	change_color_WS2812();
+
+	WDOGn_Feed(DEFAULT_WDOG);
 }
 
 void border_control_PM(void)
@@ -162,7 +183,22 @@ void border_control_PM(void)
 			}
 	}
 
+	WDOGn_Feed(DEFAULT_WDOG);
+
+	if(GPIO_PinInGet(gpioPortA, 5) == 1)
+	  {
+			if(GPIO_PinInGet(gpioPortA, 5) == 1)
+			 {SET_WHITE_LIGHT(LED_ENABLE);}
+		}
+	else
+		{
+			if(GPIO_PinInGet(gpioPortA, 5) == 0)
+		   {SET_TURQUOISE_LIGHT(LED_ENABLE);}
+		}
+
 	change_color_WS2812();
+
+	WDOGn_Feed(DEFAULT_WDOG);
 }
 
 void calibration_by_env_data(void)

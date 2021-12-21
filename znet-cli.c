@@ -630,6 +630,17 @@ static EmberCommandEntry emberCommandPluginNetworkSteeringTable[] = {
   emberCommandEntryActionWithDetails("stop", emberAfPluginNetworkSteeringStopCommand, "", "Stops the network steering process.", NULL),
   emberCommandEntryTerminator(),
 };
+void printChildTable(void);
+void printInfo(void);
+void printNeighborTable(void);
+void printRouteTable(void);
+static EmberCommandEntry emberCommandPluginStackDiagnosticsTable[] = {
+  emberCommandEntryActionWithDetails("child-table", printChildTable, "", "Prints out the entries in the stack's child table.", NULL),
+  emberCommandEntryActionWithDetails("info", printInfo, "", "Prints out general information about the state of the stack.", NULL),
+  emberCommandEntryActionWithDetails("neighbor-table", printNeighborTable, "", "Prints out the entries in the stack's neighbor table.", NULL),
+  emberCommandEntryActionWithDetails("route-table", printRouteTable, "", "Prints out the entries in the stack's route table.", NULL),
+  emberCommandEntryTerminator(),
+};
 void emberAfPluginSetTCLinkKeyUpdateTimerCommand(void);
 #if defined(EMBER_COMMAND_INTEPRETER_HAS_DESCRIPTION_FIELD)
 static const char * const pluginUpdateTcLinkKeyTimerCommandArguments[] = {
@@ -650,6 +661,7 @@ static EmberCommandEntry emberCommandPluginTable[] = {
   emberCommandEntrySubMenu("identify", emberCommandPluginIdentifyTable, ""),
   emberCommandEntrySubMenu("idle-sleep", emberCommandPluginIdleSleepTable, ""),
   emberCommandEntrySubMenu("network-steering", emberCommandPluginNetworkSteeringTable, ""),
+  emberCommandEntrySubMenu("stack-diagnostics", emberCommandPluginStackDiagnosticsTable, ""),
   emberCommandEntrySubMenu("update-tc-link-key", emberCommandPluginUpdateTcLinkKeyTable, ""),
   emberCommandEntryTerminator(),
 };

@@ -258,6 +258,10 @@
 // User options for plugin Source Route Library
 #define EMBER_SOURCE_ROUTE_TABLE_SIZE 7
 
+// Use this macro to check if Stack Diagnostics plugin is included
+#define EMBER_AF_PLUGIN_STACK_DIAGNOSTICS
+// User options for plugin Stack Diagnostics
+
 // Use this macro to check if Strong Random plugin is included
 #define EMBER_AF_PLUGIN_STRONG_RANDOM
 // User options for plugin Strong Random
